@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SPACE_Framework.TestData
+{
+    public class TestData
+    {
+        private static readonly Random random = new Random();
+        public static string commercialSpacecraftName = "Cspacecraft-ES" + random.Next(1, 100);
+        public static string militarySpacecraftName = "Mspacecraft-ES" + random.Next(1, 100);
+        public static string researchSpacecraftName = "Rspacecraft-ES" + random.Next(1, 100);
+        public static string spaceflightName = "Flight-ES" + random.Next(1, 100);
+
+        public static string countryBG = "Bulgaria";
+        public static string countryAU = "Australia";
+        public static string countryUS = "United States";
+
+        public static string spaceportSF = "Sofia";
+        public static string spaceportNY = "New York"; 
+        public static string spaceportSY = "Sydney";
+
+    }
+}
