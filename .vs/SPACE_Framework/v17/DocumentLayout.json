@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -73,6 +73,10 @@
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "FleetsView.cs",
@@ -82,8 +86,7 @@
               "RelativeToolTip": "Views\\FleetsView.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T09:58:22.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-23T09:58:22.702Z"
             },
             {
               "$type": "Document",
@@ -93,7 +96,7 @@
               "RelativeDocumentMoniker": "Tests\\BaseTest.cs",
               "ToolTip": "C:\\Users\\eshestakov\\Documents\\Personal-Documents\\DemoRepos\\SPACE-FRAMEWORK\\SPACE_Framework\\Tests\\BaseTest.cs",
               "RelativeToolTip": "Tests\\BaseTest.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwCIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-23T07:02:52.481Z",
               "EditorCaption": ""
@@ -108,8 +111,7 @@
               "RelativeToolTip": "Tests\\FleetsPageTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T07:17:27.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T07:17:27.995Z"
             },
             {
               "$type": "Document",
@@ -121,8 +123,7 @@
               "RelativeToolTip": "Tests\\SpacecraftPageTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T07:14:44.568Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T07:14:44.568Z"
             },
             {
               "$type": "Document",
@@ -134,8 +135,7 @@
               "RelativeToolTip": "Tests\\SpaceflightTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T07:16:15.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T07:16:15.058Z"
             },
             {
               "$type": "Document",
@@ -147,8 +147,7 @@
               "RelativeToolTip": "Views\\BaseView.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T06:58:58.826Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T06:58:58.826Z"
             },
             {
               "$type": "Document",
@@ -160,8 +159,7 @@
               "RelativeToolTip": "Views\\SpacecraftView.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T07:28:04.9Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-23T07:28:04.9Z"
             },
             {
               "$type": "Document",
@@ -173,8 +171,7 @@
               "RelativeToolTip": "Views\\SpaceflightView.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T07:35:47.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-23T07:35:47.24Z"
             },
             {
               "$type": "Document",
@@ -186,8 +183,7 @@
               "RelativeToolTip": "TestData\\TestData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T12:35:34.414Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T12:35:34.414Z"
             },
             {
               "$type": "Document",
@@ -199,8 +195,7 @@
               "RelativeToolTip": "Pages\\BasePage.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T07:00:33.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T07:00:33.633Z"
             },
             {
               "$type": "Document",
@@ -212,8 +207,7 @@
               "RelativeToolTip": "Helpers\\CommonComponents.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAAwFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T06:57:18.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T06:57:18.694Z"
             }
           ]
         }
