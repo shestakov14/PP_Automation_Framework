@@ -22,7 +22,7 @@ namespace SPACE_Framework.Tests
         BaseSubgrid? subgrid;
 
         [Test]
-        public void Test_CreateMaintenanceRecord()
+        public void Test_CreateMaintenanceRecord() 
         {
             commonComponents = new CommonComponents(driver);
             maintenancePage = new MaintenancePage(driver);
@@ -41,10 +41,9 @@ namespace SPACE_Framework.Tests
             commonComponents.CompleteOptionField("Incident Category", "Engine Overheating");
             bussinessProcessFlowPage.ClickNextStageButton();
             commonComponents.WaitUntilRecordSaved();
-            commonComponents.NavigateToSubgridSection("Maintenance Tasks");
 
+            subgrid.NavigateToSubgridSection("Maintenance Tasks");
             subgrid.RefreshGridUntilRowsUpdated("Rows: 2");
-
             subgrid.SelectAllRecords();
             subgrid.ClickEditButton();
 
@@ -63,8 +62,22 @@ namespace SPACE_Framework.Tests
             commonComponents.CompleteDropdownField("Final Outcome", "2");
             bussinessProcessFlowPage.ClickFinishButton();
             commonComponents.WaitUntilRecordSaved();
+        }
 
+        [Test]
+        public void Test_DeleteMaintenanceRecord()
+        {
+            commonComponents = new CommonComponents(driver);
+            maintenancePage = new MaintenancePage(driver);
+            bussinessProcessFlowPage = new BussinessProcessFlowPage(driver);
+            view = new BaseView(driver);
+            subgrid = new BaseSubgrid(driver);
 
+            commonComponents.NavigateToTab("Maintenances");
+            view.OpenActiveRecordByIndex("1");
+            commonComponents.DeleteRecord();
+
+            Assert.That(view.GetTabView("Maintenances"), Is.EqualTo("Active Maintenances"));
         }
     }
 } 

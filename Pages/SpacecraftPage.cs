@@ -53,7 +53,7 @@ namespace SPACE_Framework.Pages
 
         public void SelectOrganisationType(string index)
         {
-            CommonComps.CompleteDropdownField(index);
+            CommonComps.CompleteDropdownField("Organisation type", index);
         }
 
 

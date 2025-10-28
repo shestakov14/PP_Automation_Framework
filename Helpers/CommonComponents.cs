@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 using SPACE_Framework.Pages;
 
 namespace SPACE_Framework.Helpers
@@ -27,10 +28,10 @@ namespace SPACE_Framework.Helpers
 
         public void DeleteRecord()
         {
-            var deleteButtonRibonLocator = By.XPath("//button[@aria-label=\"Delete\"]");
-            ClickElementByLocator(deleteButtonRibonLocator);
-            var deleteConfirmationButton = By.XPath("//button[@data-id=\"confirmButton\"]");
-            ClickElementByLocator(deleteConfirmationButton);    
+            var deleteButtonRibonLocator = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@aria-label=\"Delete\"]")));
+            deleteButtonRibonLocator.Click();
+            var deleteConfirmationButton = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@data-id=\"confirmButton\"]")));
+            deleteConfirmationButton.Click();    
         }
 
         public void CompleteOptionField(string fieldValue,string input)
@@ -60,9 +61,9 @@ namespace SPACE_Framework.Helpers
             FindElementByLocator(locatorSearch).SendKeys(Keys.Enter);
         }
 
-        public void CompleteDropdownField(string index)
+        public void CompleteDropdownField(string fieldLabel, string index)
         {
-            var dropdownFieldLocator = By.XPath("//button[@aria-label=\"Organisation Type\"]");
+            var dropdownFieldLocator = By.XPath($"//button[@aria-label=\"{fieldLabel}\"]");
             var dropdownOptionLocator = By.XPath($"(//div[@role=\"listbox\"]//div[contains(@id, 'option')])[{index}]");
 
             ClickElementByLocator(dropdownFieldLocator);
@@ -73,12 +74,6 @@ namespace SPACE_Framework.Helpers
         {
             var tabLocator = By.XPath($"//span[contains(@class, 'pa-') and contains(text(), '{tab}')]");
             ClickElementByLocator(tabLocator);
-        }
-
-        public void NavigateToSubgridSection(string section)
-        {
-            var sectionLocator = By.XPath($"//li[contains(@id, 'tab') and contains(@aria-label, '{section}')]");
-            ClickElementByLocator(sectionLocator);
         }
 
         public string GetRecordTitle()
@@ -101,5 +96,10 @@ namespace SPACE_Framework.Helpers
             });
         }
 
+        public void ClickSaveButtonQuickCreate()
+        {
+            ClickElementByLocator(By.XPath("//button[@aria-label=\"Save\"]"));
+           // WaitUntilRecordSaved();
+        }
     }
 }

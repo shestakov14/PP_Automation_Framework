@@ -12,13 +12,13 @@ namespace SPACE_Framework.Tests
     public class FleetsPageTests : BaseTest
     {
         CommonComponents? commonComponents;
-        BaseView? view;
+        FleetsView? view;
 
         [Test]
         public void Test_NavigateTo_Fleets_Section()
         {
             commonComponents = new CommonComponents(driver);
-            view = new BaseView(driver);
+            view = new FleetsView(driver);
 
             commonComponents.NavigateToTab("Fleets");
             Assert.That(view.GetTabView("Fleets"), Is.EqualTo("Active Fleets"));

@@ -39,6 +39,11 @@ namespace SPACE_Framework.Tests
         [TearDown]
         public void TearDown()
         {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                byte[] content = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
+                AllureApi.AddAttachment("Failed test screenshot", "image/png",content);
+            }
             driver.Close();
             driver.Dispose();
         }

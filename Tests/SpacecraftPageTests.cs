@@ -14,7 +14,7 @@ namespace SPACE_Framework.Tests
     {
         CommonComponents? commonComponents;
         SpacecraftPage? spacecraftPage;
-        BaseView? view;
+        SpacecraftView? view;
 
         [Test]
         public void Test_Create_CommercialModelSpacecraft()
@@ -94,7 +94,7 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
-            view = new BaseView(driver);
+            view = new SpacecraftView(driver);
 
             view.OpenActiveRecordByName(militarySpacecraftName);
             var title = commonComponents.GetRecordTitle();
@@ -116,9 +116,9 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
-            view = new BaseView(driver);
+            view = new SpacecraftView(driver);
 
-            view.OpenActiveRecordByName(commercialSpacecraftName);
+            view.OpenActiveRecordByIndex("1");
             commonComponents.DeleteRecord();
 
             var viewTitle = view.GetTabView("Active Spacecrafts");

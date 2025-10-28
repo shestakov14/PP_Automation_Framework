@@ -14,7 +14,7 @@ namespace SPACE_Framework.Tests
     {
         CommonComponents? commonComponents;
         SpaceflightPage? spaceflightPage;
-        SpacecraftView? view;
+        SpaceflightView? view;
 
         [Test]
         public void Test_Create_Spaceflight()
@@ -39,7 +39,7 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spaceflightPage = new SpaceflightPage(driver);
-           // view = new BaseView(driver);
+            view = new SpaceflightView(driver);
 
             commonComponents.NavigateToTab("Spaceflights");
             view.OpenActiveRecordByIndex("1");
@@ -52,7 +52,7 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spaceflightPage = new SpaceflightPage(driver);
-           // view = new BaseView(driver);
+            view = new SpaceflightView(driver);
 
             commonComponents.NavigateToTab("Spaceflights");
             view.OpenActiveRecordByIndex("1");
@@ -70,7 +70,7 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spaceflightPage = new SpaceflightPage(driver);
-            view = new SpacecraftView(driver);
+            view = new SpaceflightView(driver);
 
             Assert.That(view.GetRecordName("2"), Is.EqualTo("AU-888"));
            
