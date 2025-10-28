@@ -1,0 +1,28 @@
+
+# Ignore Visual Studio folder and its contents
+.vs/
+
+# Ignore bin and obj folders
+bin/
+obj/
+
+# Ignore Debug build artifacts
+bin/Debug/
+obj/Debug/
+
+# Ignore specific file types
+*.dll
+*.pdb
+*.tmp
+*.cache
+*.cs
+*.json
+*.manifest
+*.txt
+*.testlog
+*.backup.json
+*.suo
+
+# Ignore ref and refint folders
+obj/Debug/net8.0/ref/
+obj/Debug/net8.0/refint/
