@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using SPACE_Framework.Helpers;
+using static SPACE_Framework.TestData.TestData;
 
 
 namespace SPACE_Framework.Pages
@@ -19,10 +20,8 @@ namespace SPACE_Framework.Pages
             CommonComps.CompleteField("Name", name);
         }
 
-        public void FillYear()
+        public void FillYear(string year)
         {
-            var random = new Random();;
-            var year = random.Next(2000, 2020).ToString();
             CommonComps.CompleteField("Year of Manufacture", year);
         }
 
@@ -53,7 +52,7 @@ namespace SPACE_Framework.Pages
 
         public void SelectOrganisationType(string index)
         {
-            CommonComps.CompleteDropdownField("Organisation type", index);
+            CommonComps.CompleteDropdownField("Organisation Type", index);
         }
 
 

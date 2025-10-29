@@ -60,6 +60,14 @@ namespace SPACE_Framework.Views
 
             return recordDuration.GetAttribute("aria-label");
         }
+
+
+        public bool CheckRecordPresent(string spaceflightName)
+        {
+            var locator = By.XPath($"(//div[@role='row'][1]//a[contains(@aria-label, '{spaceflightName}')])[1]");
+            bool result = IsElementVisible(locator);
+            return result;
+        }
     }
 }
  

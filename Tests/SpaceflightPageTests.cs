@@ -10,7 +10,7 @@ namespace SPACE_Framework.Tests
 {
     [AllureNUnit]
     [AllureSuite("Spaceflight Page")]
-    public class SpaceflightTests : BaseTest
+    public class SpaceflightPageTests : BaseTest
     {
         CommonComponents? commonComponents;
         SpaceflightPage? spaceflightPage;

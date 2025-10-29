@@ -12,7 +12,8 @@ namespace SPACE_Framework.Helpers
         }
         public void ClickNewButtonFromToolbar()
         {
-            ClickElementByLocator(By.XPath("//button[@aria-label=\"New\"]"));
+            var newButton = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@aria-label=\"New\"]")));
+            newButton.Click();
         }
 
         public void CompleteField(string fieldLabel, string input)
@@ -24,6 +25,11 @@ namespace SPACE_Framework.Helpers
         {
             ClickElementByLocator(By.XPath("//button[@aria-label='Save (CTRL+S)']"));
             WaitUntilRecordSaved();
+        }
+
+        public void ClickSaveAndCloseButtonFromToolbar()
+        {
+            ClickElementByLocator(By.XPath("//button[@aria-label=\"Save & Close\"]"));
         }
 
         public void DeleteRecord()
@@ -64,9 +70,9 @@ namespace SPACE_Framework.Helpers
         public void CompleteDropdownField(string fieldLabel, string index)
         {
             var dropdownFieldLocator = By.XPath($"//button[@aria-label=\"{fieldLabel}\"]");
-            var dropdownOptionLocator = By.XPath($"(//div[@role=\"listbox\"]//div[contains(@id, 'option')])[{index}]");
-
             ClickElementByLocator(dropdownFieldLocator);
+
+            var dropdownOptionLocator = By.XPath($"(//div[@role=\"listbox\"]//div[contains(@id, 'option')])[{index}]");
             ClickElementByLocator(dropdownOptionLocator);
         }
 

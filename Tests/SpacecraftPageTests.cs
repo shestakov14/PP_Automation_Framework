@@ -21,22 +21,39 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
+            view = new SpacecraftView(driver);
 
             commonComponents.ClickNewButtonFromToolbar();
 
             spacecraftPage.FillName(commercialSpacecraftName);
-            spacecraftPage.FillYear();
+            spacecraftPage.FillYear(yearManufacture);
             spacecraftPage.SelectCountry(countryBG);
             spacecraftPage.SelectSpaceport(spaceportSF);
             spacecraftPage.SelectFleet("Commercial Fleet");
-            spacecraftPage.SelectSpacecraftModel("Commercial model");
+            spacecraftPage.SelectSpacecraftModel("Commercial Model");
             spacecraftPage.SelectOperatingCompany("SPACE");
 
-            commonComponents.ClickSaveButtonFromToolbar();
+            commonComponents.ClickSaveAndCloseButtonFromToolbar();
 
-            string regNumber = spacecraftPage.GetRegistrationNumber();
+            string regNumber = view.GetRecordRegistrationNumber("1");
+            string recordName = view.GetRecordName("1");
+            string recordYear = view.GetRecordYear("1");
+            string recordStatus = view.GetRecordStatus("1");
+            string recordModel = view.GetRecordModel("1");
+            string recordSpaceport = view.GetRecordSpaceport("1");
+            string recordFleet = view.GetRecordFleet("1"); 
+            string recordHours = view.GetRecordFlightHours("1");
+
             string pattern = @"^BG-[A-Z0-9]{3,4}$";
             bool isMatch = Regex.IsMatch(regNumber, pattern);
+
+            Assert.That(recordName, Is.EqualTo(commercialSpacecraftName));
+            Assert.That(recordYear, Is.EqualTo(yearManufacture));
+            Assert.That(recordStatus, Is.EqualTo("Stationed"));
+            Assert.That(recordModel, Is.EqualTo("Commercial Model"));
+            Assert.That(recordSpaceport, Is.EqualTo(spaceportSF));
+            Assert.That(recordFleet, Is.EqualTo("Commercial Fleet"));
+            Assert.That(recordHours, Is.EqualTo(""));
             Assert.IsTrue(isMatch, regNumber);
         }
 
@@ -46,23 +63,40 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
+            view = new SpacecraftView(driver);
 
             commonComponents.ClickNewButtonFromToolbar();
 
             spacecraftPage.FillName(militarySpacecraftName);
-            spacecraftPage.FillYear();
+            spacecraftPage.FillYear(yearManufacture);
             spacecraftPage.SelectCountry(countryAU);
             spacecraftPage.SelectSpaceport(spaceportSY);
             spacecraftPage.SelectFleet("Military Fleet");
             spacecraftPage.SelectSpacecraftModel("Military model");
             spacecraftPage.SetArmedOption("Yes");
 
-            commonComponents.ClickSaveButtonFromToolbar();
+            commonComponents.ClickSaveAndCloseButtonFromToolbar();
 
-            string regNumber = spacecraftPage.GetRegistrationNumber();
+            string regNumber = view.GetRecordRegistrationNumber("1");
+            string recordName = view.GetRecordName("1");
+            string recordYear = view.GetRecordYear("1");
+            string recordStatus = view.GetRecordStatus("1");
+            string recordModel = view.GetRecordModel("1");
+            string recordSpaceport = view.GetRecordSpaceport("1");
+            string recordFleet = view.GetRecordFleet("1");
+            string recordHours = view.GetRecordFlightHours("1");
+
             string pattern = @"^AU-[A-Z0-9]{3,4}$";
             bool isMatch = Regex.IsMatch(regNumber, pattern);
-            Assert.IsTrue(isMatch);
+
+            Assert.That(recordName, Is.EqualTo(militarySpacecraftName));
+            Assert.That(recordYear, Is.EqualTo(yearManufacture));
+            Assert.That(recordStatus, Is.EqualTo("Stationed"));
+            Assert.That(recordModel, Is.EqualTo("Military Model"));
+            Assert.That(recordSpaceport, Is.EqualTo(spaceportSY));
+            Assert.That(recordFleet, Is.EqualTo("Military Fleet"));
+            Assert.That(recordHours, Is.EqualTo(""));
+            Assert.IsTrue(isMatch, regNumber);
         }
 
         [Test]
@@ -70,23 +104,40 @@ namespace SPACE_Framework.Tests
         {
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver); ;
+            view = new SpacecraftView(driver);
 
             commonComponents.ClickNewButtonFromToolbar();
 
             spacecraftPage.FillName(researchSpacecraftName);
-            spacecraftPage.FillYear();
+            spacecraftPage.FillYear(yearManufacture);
             spacecraftPage.SelectCountry(countryUS);
             spacecraftPage.SelectSpaceport(spaceportNY);
             spacecraftPage.SelectFleet("Research Fleet");
             spacecraftPage.SelectSpacecraftModel("Research model");
             spacecraftPage.SelectOrganisationType("2");
 
-            commonComponents.ClickSaveButtonFromToolbar();
+            commonComponents.ClickSaveAndCloseButtonFromToolbar();
 
-            string regNumber = spacecraftPage.GetRegistrationNumber();
+            string regNumber = view.GetRecordRegistrationNumber("1");
+            string recordName = view.GetRecordName("1");
+            string recordYear = view.GetRecordYear("1");
+            string recordStatus = view.GetRecordStatus("1");
+            string recordModel = view.GetRecordModel("1");
+            string recordSpaceport = view.GetRecordSpaceport("1");
+            string recordFleet = view.GetRecordFleet("1");
+            string recordHours = view.GetRecordFlightHours("1");
+
             string pattern = @"^US-[A-Z0-9]{3,4}$";
             bool isMatch = Regex.IsMatch(regNumber, pattern);
-            Assert.IsTrue(isMatch);
+
+            Assert.That(recordName, Is.EqualTo(researchSpacecraftName));
+            Assert.That(recordYear, Is.EqualTo(yearManufacture));
+            Assert.That(recordStatus, Is.EqualTo("Stationed"));
+            Assert.That(recordModel, Is.EqualTo("Research Model"));
+            Assert.That(recordSpaceport, Is.EqualTo(spaceportNY));
+            Assert.That(recordFleet, Is.EqualTo("Research Fleet"));
+            Assert.That(recordHours, Is.EqualTo(""));
+            Assert.IsTrue(isMatch, regNumber);
         }
 
         [Test]
@@ -123,7 +174,6 @@ namespace SPACE_Framework.Tests
 
             var viewTitle = view.GetTabView("Active Spacecrafts");
             Assert.That(viewTitle, Is.EqualTo("Active Spacecrafts"));
-            
         }
     }
 }
