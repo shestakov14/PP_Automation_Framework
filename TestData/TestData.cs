@@ -22,5 +22,10 @@ namespace SPACE_Framework.TestData
         public static string spaceportNY = "New York"; 
         public static string spaceportSY = "Sydney";
 
+        public static string engineName = "Engine-ES" + random.Next(1, 100);
+
+        public static string yearManufacture = random.Next(2000, 2020).ToString();
+
     }
 }
+ 
