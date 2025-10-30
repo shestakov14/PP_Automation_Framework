@@ -32,7 +32,7 @@ namespace SPACE_Framework.Tests
 
             commonComponents.NavigateToTab("Maintenances");
             commonComponents.ClickNewButtonFromToolbar();
-            maintenancePage.FillName("record101abc");
+            maintenancePage.FillName("mainES1");
             maintenancePage.SelectSpacecraft("Demo");
             commonComponents.ClickSaveButtonFromToolbar();
 

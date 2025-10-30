@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 using SPACE_Framework.Pages;
 using System;
 using System.Collections.Generic;
@@ -44,10 +45,9 @@ namespace SPACE_Framework.Views
 
         public string GetTabView(string tabName)
         {
-            var tabViewLocator = By.XPath($"//button[contains(@title, '{tabName}')]//span[contains(text(), '{tabName}')]");
-            var tabElement = FindElementByLocator(tabViewLocator);
-
-            return tabElement.Text;
+            var tabViewLocator = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath($"//button[contains(@title, '{tabName}')]//span[contains(text(), '{tabName}')]")));
+      
+            return tabViewLocator.Text;
         }
 
     }

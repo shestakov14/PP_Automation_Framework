@@ -38,25 +38,21 @@ namespace SPACE_Framework.Pages
 
         public void SetStartEndDate()
         {
-            DateTime tomorrow = DateTime.Today.AddDays(1);
-            string formattedStartDate = tomorrow.ToString("MM-dd-yyyy");
+            string tomorrow = DateTime.Today.AddDays(1).ToString("MM/dd/yyyy");
+            string dayAfterTomorrow = DateTime.Today.AddDays(2).ToString("MM/dd/yyyy");
 
-            DateTime dayAfterTomorrow = tomorrow.AddDays(1);
-            string formattedEndDate = dayAfterTomorrow.ToString("MM-dd-yyyy");
-
-            CommonComps.CompleteField("Date of Start Date/Time", formattedStartDate);
-            CommonComps.CompleteField("Date of End Date/Time", formattedEndDate);
+            CommonComps.CompleteField("Date of Start Date/Time", tomorrow);
+            CommonComps.CompleteField("Date of End Date/Time", dayAfterTomorrow);
         }
 
         public void UpdateSpaceFlight(string name, string launchSpaceport, string landingSpaceport) 
         {
             ClearElementTextByLocator(By.XPath("//input[@aria-label=\"Name\"]"));
-            var random = new Random();
-            name = name + random.Next(1, 100);
             CommonComps.CompleteField("Name", name);
             CommonComps.UpdateOptionFieldValue("Landing Spaceport", landingSpaceport);
             CommonComps.UpdateOptionFieldValue("Launch Spaceport", launchSpaceport);
         }
+
         public string GetRecordName()
         {
             var locator = By.XPath("//input[@aria-label=\"Name\"]");

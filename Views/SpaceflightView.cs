@@ -29,7 +29,7 @@ namespace SPACE_Framework.Views
             return recordLandingSpaceport.GetAttribute("aria-label");
         }
 
-        public string GetRecordLandSpacraft(string index)
+        public string GetRecordSpacecraft(string index)
         {
             var locator = By.XPath($"(//div[@role='gridcell' and contains(@col-id, 'space_spacecraftid')])[{index}]//a[@href]");
             var recordLandingSpaceport = FindElementByLocator(locator);

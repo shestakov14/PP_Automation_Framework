@@ -34,9 +34,9 @@ namespace SPACE_Framework.Helpers
 
         public void DeleteRecord()
         {
-            var deleteButtonRibonLocator = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@aria-label=\"Delete\"]")));
+            var deleteButtonRibonLocator = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@aria-label=\"Delete\"]")));
             deleteButtonRibonLocator.Click();
-            var deleteConfirmationButton = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@data-id=\"confirmButton\"]")));
+            var deleteConfirmationButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@data-id=\"confirmButton\"]")));
             deleteConfirmationButton.Click();    
         }
 

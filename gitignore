@@ -1,6 +1,7 @@
 
 # Ignore Visual Studio folder and its contents
 .vs/
+.vs/SPACE_Framework/v17/
 
 # Ignore bin and obj folders
 bin/
@@ -26,3 +27,5 @@ obj/Debug/
 # Ignore ref and refint folders
 obj/Debug/net8.0/ref/
 obj/Debug/net8.0/refint/
+obj/Debug/net8.0/
+bin/Debug/net8.0/allure-results/
