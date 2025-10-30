@@ -22,16 +22,19 @@ namespace SPACE_Framework.Helpers
             var locator = By.XPath($"//div[@title='{stageName}']//div[contains(@id, 'stageIndicatorHolder')]");
             var bpfStage = wait.Until(ExpectedConditions.ElementToBeClickable(locator));
             bpfStage.Click();
+            Thread.Sleep(1000);
         }
 
         public void ClickNextStageButton()
         {
+            Thread.Sleep(1000);
             var locator = By.XPath($"//button[@aria-label=\"Next Stage\"]");
             ClickElementByLocator(locator);
         }
 
         public void ClickFinishButton()
         {
+            Thread.Sleep(1000);
             var locator = By.XPath($"//button[@aria-label=\"Finish\"]");
             ClickElementByLocator(locator);
         }
@@ -47,7 +50,7 @@ namespace SPACE_Framework.Helpers
         public void EnterActualCompletionDate()
         {
             DateTime date = DateTime.Today;
-            string formattedStartDate = date.ToString("MM-dd-yyyy");
+            string formattedStartDate = date.ToString("MM/dd/yyyy");
             CommonComps.CompleteField("Date of Actual Completion Date", formattedStartDate);
         }
 

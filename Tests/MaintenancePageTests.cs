@@ -3,11 +3,7 @@ using Allure.NUnit.Attributes;
 using SPACE_Framework.Helpers;
 using SPACE_Framework.Pages;
 using SPACE_Framework.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static SPACE_Framework.TestData.TestData;
 
 namespace SPACE_Framework.Tests
 {
@@ -18,7 +14,7 @@ namespace SPACE_Framework.Tests
         CommonComponents? commonComponents;
         MaintenancePage? maintenancePage;
         BussinessProcessFlowPage? bussinessProcessFlowPage;
-        BaseView? view;
+        MaintenanceView? view;
         BaseSubgrid? subgrid;
 
         [Test]
@@ -27,12 +23,12 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             maintenancePage = new MaintenancePage(driver);
             bussinessProcessFlowPage = new BussinessProcessFlowPage(driver);
-            view = new BaseView(driver);
+            view = new MaintenanceView(driver);
             subgrid = new BaseSubgrid(driver);
 
             commonComponents.NavigateToTab("Maintenances");
             commonComponents.ClickNewButtonFromToolbar();
-            maintenancePage.FillName("mainES1");
+            maintenancePage.FillName(maintenanceName);
             maintenancePage.SelectSpacecraft("Demo");
             commonComponents.ClickSaveButtonFromToolbar();
 
@@ -62,6 +58,28 @@ namespace SPACE_Framework.Tests
             commonComponents.CompleteDropdownField("Final Outcome", "2");
             bussinessProcessFlowPage.ClickFinishButton();
             commonComponents.WaitUntilRecordSaved();
+            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+
+            view.OpenInactiveRecordsView();
+            commonComponents.ClickRefreshButtonFromToolbar();
+            commonComponents.ClickRefreshButtonFromToolbar();
+
+            string recordName = view.GetRecordName("1");
+            string recordComletionDate = view.GetRecordCompletionDate("1");
+            string recordAssigne = view.GetRecordAssignedTo("1");
+            string recordDiagnostic = view.GetRecordDiagnostic("1");
+            string recordRepair = view.GetRecordRepair("1");
+            string recordSeverity = view.GetRecordSeverity("1");
+
+            string completionDate = DateTime.Today.ToString("MM/dd/yyyy");
+
+            Assert.That(recordName, Is.EqualTo(maintenanceName));
+            Assert.That(recordComletionDate, Is.EqualTo(completionDate));
+            Assert.That(recordAssigne, Is.EqualTo("# BAP"));
+            Assert.That(recordDiagnostic, Is.EqualTo("No"));
+            Assert.That(recordRepair, Is.EqualTo("No"));
+            Assert.That(recordSeverity, Is.EqualTo(""));
+
         }
 
         [Test]
@@ -70,7 +88,7 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             maintenancePage = new MaintenancePage(driver);
             bussinessProcessFlowPage = new BussinessProcessFlowPage(driver);
-            view = new BaseView(driver);
+            view = new MaintenanceView(driver);
             subgrid = new BaseSubgrid(driver);
 
             commonComponents.NavigateToTab("Maintenances");

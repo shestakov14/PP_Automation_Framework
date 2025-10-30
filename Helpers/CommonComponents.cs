@@ -32,6 +32,11 @@ namespace SPACE_Framework.Helpers
             ClickElementByLocator(By.XPath("//button[@aria-label=\"Save & Close\"]"));
         }
 
+        public void ClickRefreshButtonFromToolbar()
+        {
+            ClickElementByLocator(By.XPath("//button[@aria-label=\"Refresh\"]"));
+        }
+
         public void DeleteRecord()
         {
             var deleteButtonRibonLocator = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@aria-label=\"Delete\"]")));

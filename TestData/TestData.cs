@@ -12,7 +12,9 @@ namespace SPACE_Framework.TestData
         public static string commercialSpacecraftName = "Cspacecraft-ES" + random.Next(1, 100);
         public static string militarySpacecraftName = "Mspacecraft-ES" + random.Next(1, 100);
         public static string researchSpacecraftName = "Rspacecraft-ES" + random.Next(1, 100);
+
         public static string spaceflightName = "Flight-ES" + random.Next(1, 100);
+        public static string maintenanceName = "Maintenance" + random.Next(1, 100);
 
         public static string countryBG = "Bulgaria";
         public static string countryAU = "Australia";
