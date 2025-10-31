@@ -55,8 +55,9 @@ namespace SPACE_Framework.Views
 
         public void NavigateToSubgridSection(string section)
         {
-            var sectionLocator = By.XPath($"//li[contains(@id, 'tab') and contains(@aria-label, '{section}')]");
-            ClickElementByLocator(sectionLocator);
+           var sectionLocator = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath
+                ($"//li[contains(@id, 'tab') and contains(@aria-label, '{section}')]")));
+           sectionLocator.Click();
         }
 
         public void ClickNewButton(string recordType) 

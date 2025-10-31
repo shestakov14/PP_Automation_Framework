@@ -8,51 +8,51 @@ namespace SPACE_Framework.Pages
 {
     public class SpacecraftPage: BasePage
     {
-        CommonComponents CommonComps;
+        CommonComponents CommonComponents;
 
         public SpacecraftPage(IWebDriver driver):base(driver)
         {
-            CommonComps = new CommonComponents(driver);
+            CommonComponents = new CommonComponents(driver);
         }
 
         public void FillName(string name)
         {
-            CommonComps.CompleteField("Name", name);
+            CommonComponents.CompleteField("Name", name);
         }
 
         public void FillYear(string year)
         {
-            CommonComps.CompleteField("Year of Manufacture", year);
+            CommonComponents.CompleteField("Year of Manufacture", year);
         }
 
         public void SelectCountry(string country)
         {
-            CommonComps.CompleteOptionField("Country",country);
+            CommonComponents.CompleteOptionField("Country",country);
         }
 
         public void SelectSpaceport(string spaceport)
         {
-            CommonComps.CompleteOptionField("Spaceport",spaceport);
+            CommonComponents.CompleteOptionField("Spaceport",spaceport);
         }
 
         public void SelectFleet(string fleet)
         {
-            CommonComps.CompleteOptionField("Fleet",fleet);
+            CommonComponents.CompleteOptionField("Fleet",fleet);
         }
 
         public void SelectSpacecraftModel(string spacecraftModel)
         {
-            CommonComps.CompleteOptionField("Spacecraft Model",spacecraftModel);
+            CommonComponents.CompleteOptionField("Spacecraft Model",spacecraftModel);
         }
 
         public void SelectOperatingCompany(string operatingCompany)
         {
-            CommonComps.CompleteOptionField("Operating Company",operatingCompany);
+            CommonComponents.CompleteOptionField("Operating Company",operatingCompany);
         }
 
         public void SelectOrganisationType(string index)
         {
-            CommonComps.CompleteDropdownField("Organisation Type", index);
+            CommonComponents.CompleteDropdownField("Organisation Type", index);
         }
 
 

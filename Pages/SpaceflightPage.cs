@@ -10,30 +10,30 @@ namespace SPACE_Framework.Pages
 {
     public class SpaceflightPage : BasePage
     {
-        CommonComponents CommonComps;
+        CommonComponents commonComponents;
         public SpaceflightPage(IWebDriver driver) : base(driver)
         {
-            CommonComps = new CommonComponents(driver);
+            commonComponents = new CommonComponents(driver);
         }
 
         public void FillName(string spaceflightName)
         {
-            CommonComps.CompleteField("Name", spaceflightName);
+            commonComponents.CompleteField("Name", spaceflightName);
         }
 
         public void SelectSpacecraft(string spacecraft)
         {
-            CommonComps.CompleteOptionField("Spacecraft", spacecraft);
+            commonComponents.CompleteOptionField("Spacecraft", spacecraft);
         }
 
         public void SelectLaunchSpaceport(string spaceport)
         {
-            CommonComps.CompleteOptionField("Launch Spaceport", spaceport);
+            commonComponents.CompleteOptionField("Launch Spaceport", spaceport);
         }
 
         public void SelectLandingSpaceport(string spaceport)
         {
-            CommonComps.CompleteOptionField("Landing Spaceport", spaceport);
+            commonComponents.CompleteOptionField("Landing Spaceport", spaceport);
         }
 
         public void SetStartEndDate()
@@ -41,16 +41,16 @@ namespace SPACE_Framework.Pages
             string tomorrow = DateTime.Today.AddDays(1).ToString("MM/dd/yyyy");
             string dayAfterTomorrow = DateTime.Today.AddDays(2).ToString("MM/dd/yyyy");
 
-            CommonComps.CompleteField("Date of Start Date/Time", tomorrow);
-            CommonComps.CompleteField("Date of End Date/Time", dayAfterTomorrow);
+            commonComponents.CompleteField("Date of Start Date/Time", tomorrow);
+            commonComponents.CompleteField("Date of End Date/Time", dayAfterTomorrow);
         }
 
         public void UpdateSpaceFlight(string name, string launchSpaceport, string landingSpaceport) 
         {
             ClearElementTextByLocator(By.XPath("//input[@aria-label=\"Name\"]"));
-            CommonComps.CompleteField("Name", name);
-            CommonComps.UpdateOptionFieldValue("Landing Spaceport", landingSpaceport);
-            CommonComps.UpdateOptionFieldValue("Launch Spaceport", launchSpaceport);
+            commonComponents.CompleteField("Name", name);
+            commonComponents.UpdateOptionFieldValue("Landing Spaceport", landingSpaceport);
+            commonComponents.UpdateOptionFieldValue("Launch Spaceport", launchSpaceport);
         }
 
         public string GetRecordName()

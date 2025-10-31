@@ -2,6 +2,7 @@
 using Allure.NUnit.Attributes;
 using SPACE_Framework.Helpers;
 using SPACE_Framework.Pages;
+using SPACE_Framework.QuickCreatePages;
 using SPACE_Framework.Views;
 using static SPACE_Framework.TestData.TestData;
 
@@ -32,36 +33,7 @@ namespace SPACE_Framework.Tests
 
             commonComponents.NavigateToTab("Maintenances");
             toolbar.ClickNewButton();
-            maintenancePage.FillName(maintenanceName);
-            maintenancePage.SelectSpacecraft("Demo");
-            toolbar.ClickSaveButton();
-
-            bussinessProcessFlowPage.ClickBPFStage("Triage");
-            commonComponents.CompleteOptionField("Assigned To", "BAP");
-            commonComponents.CompleteOptionField("Incident Category", "Engine Overheating");
-            bussinessProcessFlowPage.ClickNextStageButton();
-            toolbar.WaitUntilRecordSaved();
-
-            subgrid.NavigateToSubgridSection("Maintenance Tasks");
-            subgrid.RefreshGridUntilRowsUpdated("Rows: 2");
-            subgrid.SelectAllRecords();
-            subgrid.ClickEditButton();
-            commonComponents.CompleteDropdownField("Status", "3");
-            Thread.Sleep(1000);
-            quickCreatePage.ClickSaveButton();
-            subgrid.RefreshGridUntilRowsUpdated("Rows: 0");
-
-            bussinessProcessFlowPage.ClickBPFStage("Repair");
-            bussinessProcessFlowPage.EnterEstimateCompletionDate();
-            bussinessProcessFlowPage.ClickNextStageButton();
-
-            bussinessProcessFlowPage.ClickBPFStage("Close");
-            bussinessProcessFlowPage.EnterActualCompletionDate();
-            commonComponents.CompleteDropdownField("Final Outcome", "2");
-            bussinessProcessFlowPage.ClickFinishButton();
-            toolbar.WaitUntilRecordSaved();
-            toolbar.ClickSaveAndClose();
-
+            maintenancePage.CreteMaintenanceRecord(maintenanceName, "demo", "BAP", "Engine Overheating");
             view.OpenInactiveRecordsView();
             toolbar.ClickRefreshButton();
             toolbar.ClickRefreshButton();
