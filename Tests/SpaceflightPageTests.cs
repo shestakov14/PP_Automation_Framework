@@ -16,6 +16,7 @@ namespace SPACE_Framework.Tests
         CommonComponents? commonComponents;
         SpaceflightPage? spaceflightPage;
         SpaceflightView? view;
+        Toolbar? toolbar;
 
         [Test]
         public void Test_Create_Spaceflight()
@@ -23,16 +24,17 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             spaceflightPage = new SpaceflightPage(driver);
             view = new SpaceflightView(driver);
+            toolbar = new Toolbar(driver);
 
             commonComponents.NavigateToTab("Spaceflights");
 
-            commonComponents.ClickNewButtonFromToolbar();
+            toolbar.ClickNewButton();
             spaceflightPage.FillName(spaceflightName);
             spaceflightPage.SelectSpacecraft("test");
             spaceflightPage.SelectLandingSpaceport(spaceportNY);
             spaceflightPage.SelectLaunchSpaceport(spaceportSF);
             spaceflightPage.SetStartEndDate();
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.ClickSaveAndClose();
 
             string recordName = view.GetRecordName("1");
             string recordLaunchSpaceport = view.GetRecordLaunchingSpaceport("1");
@@ -60,6 +62,7 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             spaceflightPage = new SpaceflightPage(driver);
             view = new SpaceflightView(driver);
+            toolbar = new Toolbar(driver);
 
             commonComponents.NavigateToTab("Spaceflights");
             view.OpenActiveRecordByIndex("1");
@@ -68,7 +71,7 @@ namespace SPACE_Framework.Tests
             string updatedName = "updatedFlight" + random.Next(1, 100);
 
             spaceflightPage.UpdateSpaceFlight(updatedName, spaceportNY, spaceportSF);
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.ClickSaveAndClose();
 
             string recordName = view.GetRecordName("1");
             string recordLaunchSpaceport = view.GetRecordLaunchingSpaceport("1");

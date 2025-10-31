@@ -10,31 +10,10 @@ namespace SPACE_Framework.Helpers
         {
                 
         }
-        public void ClickNewButtonFromToolbar()
-        {
-            var newButton = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@aria-label=\"New\"]")));
-            newButton.Click();
-        }
 
         public void CompleteField(string fieldLabel, string input)
         {
             TypeOnElementByLocator(By.XPath($"//input[@aria-label=\"{fieldLabel}\"]"),input);
-        }
-
-        public void ClickSaveButtonFromToolbar()
-        {
-            ClickElementByLocator(By.XPath("//button[@aria-label='Save (CTRL+S)']"));
-            WaitUntilRecordSaved();
-        }
-
-        public void ClickSaveAndCloseButtonFromToolbar()
-        {
-            ClickElementByLocator(By.XPath("//button[@aria-label=\"Save & Close\"]"));
-        }
-
-        public void ClickRefreshButtonFromToolbar()
-        {
-            ClickElementByLocator(By.XPath("//button[@aria-label=\"Refresh\"]"));
         }
 
         public void DeleteRecord()
@@ -98,19 +77,5 @@ namespace SPACE_Framework.Helpers
             return recordTitle;
         }
 
-        public void WaitUntilRecordSaved()
-        {
-            wait.Until(dr =>
-            {
-                var saveIndicatorText = dr.FindElement(By.XPath("//span[@data-id='header_saveStatus']")).Text;
-                return saveIndicatorText.Contains("Saved");
-            });
-        }
-
-        public void ClickSaveButtonQuickCreate()
-        {
-            ClickElementByLocator(By.XPath("//button[@aria-label=\"Save\"]"));
-           // WaitUntilRecordSaved();
-        }
     }
 }

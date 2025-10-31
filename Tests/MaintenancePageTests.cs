@@ -16,6 +16,8 @@ namespace SPACE_Framework.Tests
         BussinessProcessFlowPage? bussinessProcessFlowPage;
         MaintenanceView? view;
         BaseSubgrid? subgrid;
+        Toolbar? toolbar;
+        BaseQuickCreatePage? quickCreatePage;
 
         [Test]
         public void Test_CreateMaintenanceRecord() 
@@ -25,28 +27,28 @@ namespace SPACE_Framework.Tests
             bussinessProcessFlowPage = new BussinessProcessFlowPage(driver);
             view = new MaintenanceView(driver);
             subgrid = new BaseSubgrid(driver);
+            toolbar = new Toolbar(driver);
+            quickCreatePage = new BaseQuickCreatePage(driver);
 
             commonComponents.NavigateToTab("Maintenances");
-            commonComponents.ClickNewButtonFromToolbar();
+            toolbar.ClickNewButton();
             maintenancePage.FillName(maintenanceName);
             maintenancePage.SelectSpacecraft("Demo");
-            commonComponents.ClickSaveButtonFromToolbar();
+            toolbar.ClickSaveButton();
 
             bussinessProcessFlowPage.ClickBPFStage("Triage");
             commonComponents.CompleteOptionField("Assigned To", "BAP");
             commonComponents.CompleteOptionField("Incident Category", "Engine Overheating");
             bussinessProcessFlowPage.ClickNextStageButton();
-            commonComponents.WaitUntilRecordSaved();
+            toolbar.WaitUntilRecordSaved();
 
             subgrid.NavigateToSubgridSection("Maintenance Tasks");
             subgrid.RefreshGridUntilRowsUpdated("Rows: 2");
             subgrid.SelectAllRecords();
             subgrid.ClickEditButton();
-
             commonComponents.CompleteDropdownField("Status", "3");
             Thread.Sleep(1000);
-            commonComponents.ClickSaveButtonQuickCreate();
-
+            quickCreatePage.ClickSaveButton();
             subgrid.RefreshGridUntilRowsUpdated("Rows: 0");
 
             bussinessProcessFlowPage.ClickBPFStage("Repair");
@@ -57,12 +59,12 @@ namespace SPACE_Framework.Tests
             bussinessProcessFlowPage.EnterActualCompletionDate();
             commonComponents.CompleteDropdownField("Final Outcome", "2");
             bussinessProcessFlowPage.ClickFinishButton();
-            commonComponents.WaitUntilRecordSaved();
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.WaitUntilRecordSaved();
+            toolbar.ClickSaveAndClose();
 
             view.OpenInactiveRecordsView();
-            commonComponents.ClickRefreshButtonFromToolbar();
-            commonComponents.ClickRefreshButtonFromToolbar();
+            toolbar.ClickRefreshButton();
+            toolbar.ClickRefreshButton();
 
             string recordName = view.GetRecordName("1");
             string recordComletionDate = view.GetRecordCompletionDate("1");
@@ -70,7 +72,6 @@ namespace SPACE_Framework.Tests
             string recordDiagnostic = view.GetRecordDiagnostic("1");
             string recordRepair = view.GetRecordRepair("1");
             string recordSeverity = view.GetRecordSeverity("1");
-
             string completionDate = DateTime.Today.ToString("MM/dd/yyyy");
 
             Assert.That(recordName, Is.EqualTo(maintenanceName));
@@ -79,7 +80,6 @@ namespace SPACE_Framework.Tests
             Assert.That(recordDiagnostic, Is.EqualTo("No"));
             Assert.That(recordRepair, Is.EqualTo("No"));
             Assert.That(recordSeverity, Is.EqualTo(""));
-
         }
 
         [Test]

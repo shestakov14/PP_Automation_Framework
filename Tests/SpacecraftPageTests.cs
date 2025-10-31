@@ -15,6 +15,7 @@ namespace SPACE_Framework.Tests
         CommonComponents? commonComponents;
         SpacecraftPage? spacecraftPage;
         SpacecraftView? view;
+        Toolbar? toolbar;
 
         [Test]
         public void Test_Create_CommercialModelSpacecraft()
@@ -22,8 +23,9 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
             view = new SpacecraftView(driver);
+            toolbar = new Toolbar(driver);
 
-            commonComponents.ClickNewButtonFromToolbar();
+            toolbar.ClickNewButton();
 
             spacecraftPage.FillName(commercialSpacecraftName);
             spacecraftPage.FillYear(yearManufacture);
@@ -33,7 +35,7 @@ namespace SPACE_Framework.Tests
             spacecraftPage.SelectSpacecraftModel("Commercial Model");
             spacecraftPage.SelectOperatingCompany("SPACE");
 
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.ClickSaveAndClose();
 
             string regNumber = view.GetRecordRegistrationNumber("1");
             string recordName = view.GetRecordName("1");
@@ -64,8 +66,9 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
             view = new SpacecraftView(driver);
+            toolbar = new Toolbar(driver);
 
-            commonComponents.ClickNewButtonFromToolbar();
+            toolbar.ClickNewButton();
 
             spacecraftPage.FillName(militarySpacecraftName);
             spacecraftPage.FillYear(yearManufacture);
@@ -75,7 +78,7 @@ namespace SPACE_Framework.Tests
             spacecraftPage.SelectSpacecraftModel("Military model");
             spacecraftPage.SetArmedOption("Yes");
 
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.ClickSaveAndClose();
 
             string regNumber = view.GetRecordRegistrationNumber("1");
             string recordName = view.GetRecordName("1");
@@ -105,8 +108,9 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver); ;
             view = new SpacecraftView(driver);
+            toolbar = new Toolbar(driver);
 
-            commonComponents.ClickNewButtonFromToolbar();
+            toolbar.ClickNewButton();
 
             spacecraftPage.FillName(researchSpacecraftName);
             spacecraftPage.FillYear(yearManufacture);
@@ -116,7 +120,7 @@ namespace SPACE_Framework.Tests
             spacecraftPage.SelectSpacecraftModel("Research model");
             spacecraftPage.SelectOrganisationType("2");
 
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.ClickSaveAndClose();
 
             string regNumber = view.GetRecordRegistrationNumber("1");
             string recordName = view.GetRecordName("1");
@@ -146,6 +150,7 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             spacecraftPage = new SpacecraftPage(driver);
             view = new SpacecraftView(driver);
+            toolbar = new Toolbar(driver);
 
             view.OpenActiveRecordByName(militarySpacecraftName);
             var title = commonComponents.GetRecordTitle();
@@ -154,7 +159,7 @@ namespace SPACE_Framework.Tests
 
             commonComponents.UpdateOptionFieldValue("Country", countryBG);
             commonComponents.UpdateOptionFieldValue("Spaceport", spaceportSF);
-            commonComponents.ClickSaveButtonFromToolbar();
+            toolbar.ClickSaveButton();
 
             string regNumber = spacecraftPage.GetRegistrationNumber();
             string pattern = @"^BG-[A-Z0-9]{3,4}$";

@@ -13,7 +13,6 @@ namespace SPACE_Framework.Views
     {
         public BaseSubgrid(IWebDriver driver) : base(driver)
         {
-
         }
 
         public string GetSubgridRowsCount()
@@ -58,6 +57,12 @@ namespace SPACE_Framework.Views
         {
             var sectionLocator = By.XPath($"//li[contains(@id, 'tab') and contains(@aria-label, '{section}')]");
             ClickElementByLocator(sectionLocator);
+        }
+
+        public void ClickNewButton(string recordType) 
+        {
+            var buttonLocator = By.XPath($"//button[@aria-label=\"New {recordType}. Add New {recordType}\"]");
+            ClickElementByLocator(buttonLocator);
         }
     }
 }

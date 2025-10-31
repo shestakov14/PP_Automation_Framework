@@ -20,6 +20,7 @@ namespace SPACE_Framework.Tests
         CommonComponents? commonComponents;
         EnginePage? enginePage;
         EnginesView? view;
+        Toolbar? toolbar;
          
         [Test]
         public void Test_Create_EngineRecord()
@@ -27,14 +28,15 @@ namespace SPACE_Framework.Tests
             commonComponents = new CommonComponents(driver);
             enginePage = new EnginePage(driver);
             view = new EnginesView(driver);
+            toolbar = new Toolbar(driver);
 
             enginePage.NavigateToEnginesTab();
 
-            commonComponents.ClickNewButtonFromToolbar();
+            toolbar.ClickNewButton();
 
             enginePage.FillName(engineName);
             enginePage.SelectEngineModel("Hyperion 7");
-            commonComponents.ClickSaveAndCloseButtonFromToolbar();
+            toolbar.ClickSaveAndClose();
 
             string enginesView = view.GetTabView("Engines");
             string recordName = view.GetRecordName("1");
