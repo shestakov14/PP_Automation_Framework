@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.BiDi.BrowsingContext;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 
 namespace SPACE_Framework.Pages
@@ -16,17 +18,47 @@ namespace SPACE_Framework.Pages
 
         protected IWebElement FindElementByLocator(By by)
         {
-            return wait.Until(driver => driver.FindElement(by));
+            // return wait.Until(driver => driver.FindElement(by));
+            return wait.Until(ExpectedConditions.ElementIsVisible(by));
         }
 
         protected IList<IWebElement> FindElementsByLocator(By by)
         {
            return wait.Until(driver => driver.FindElements(by));
+
         }
 
-        protected void  ClickElementByLocator(By by)
+        protected void  ClickElementByLocator(By by, int retries = 5)
         {
-            FindElementByLocator((By)by).Click();
+            int attempt = 0;
+
+            while (attempt < retries)
+            {
+                try
+                {
+                    FindElementByLocator(by).Click();
+                    return;
+                }
+                catch (StaleElementReferenceException)
+                {
+                }
+                catch (NoSuchElementException)
+                {
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception("Clicking Failed", ex);
+                }
+
+                Thread.Sleep(500);
+                attempt++;
+            }
+
+            throw new Exception($"Failed to click element after {retries} attempts.");
+
+
+           // FindElementByLocator((By)by).Click();
         }
 
         protected void TypeOnElementByLocator(By by, string text)

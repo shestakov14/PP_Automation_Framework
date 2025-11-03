@@ -35,8 +35,7 @@ namespace SPACE_Framework.Tests
             toolbar.ClickNewButton();
             maintenancePage.CreteMaintenanceRecord(maintenanceName, "demo", "BAP", "Engine Overheating");
             view.OpenInactiveRecordsView();
-            toolbar.ClickRefreshButton();
-            toolbar.ClickRefreshButton();
+            view.RefreshUntilViewRowsCountUpdated();
 
             string recordName = view.GetRecordName("1");
             string recordComletionDate = view.GetRecordCompletionDate("1");
@@ -44,7 +43,7 @@ namespace SPACE_Framework.Tests
             string recordDiagnostic = view.GetRecordDiagnostic("1");
             string recordRepair = view.GetRecordRepair("1");
             string recordSeverity = view.GetRecordSeverity("1");
-            string completionDate = DateTime.Today.ToString("MM/dd/yyyy");
+            string completionDate = DateTime.Today.ToString("MM/d/yyyy");
 
             Assert.That(recordName, Is.EqualTo(maintenanceName));
             Assert.That(recordComletionDate, Is.EqualTo(completionDate));

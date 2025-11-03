@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
+using SPACE_Framework.Helpers;
 using SPACE_Framework.Pages;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ namespace SPACE_Framework.Views
 {
     public class BaseView : BasePage
     {
+        Toolbar toolbar;
         public BaseView(IWebDriver driver) : base(driver)
         {
+            toolbar = new Toolbar(driver);
         }
 
         public string GetRecordName(string index)
@@ -50,5 +53,24 @@ namespace SPACE_Framework.Views
             return tabViewLocator.Text;
         }
 
+        public string GetViewRowsCount()
+        {
+            var locator = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath
+              ("//div//span[contains(@class, \"statusTextContainer\")]")));
+            return locator.Text;
+        }
+
+        public void RefreshUntilViewRowsCountUpdated()
+        {
+            string initialRowsValue = GetViewRowsCount();
+            string currentRowsValue = initialRowsValue;
+
+            while (currentRowsValue == initialRowsValue )
+            {
+                toolbar.ClickRefreshButton();
+                currentRowsValue = GetViewRowsCount();
+            }
+        }
+
     }
-}
+} 

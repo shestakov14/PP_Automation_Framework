@@ -35,9 +35,10 @@ namespace SPACE_Framework.Pages
 
         public void CreteMaintenanceRecordFromToolbar()
         {
-            bussinessProcessFlowPage.ClickBPFStage("Triage");
+            subgrid.NavigateToSubgridSection("Triage");
             commonComponents.CompleteOptionField("Assigned To", "BAP");
             commonComponents.CompleteOptionField("Incident Category", "Engine Overheating");
+            bussinessProcessFlowPage.ClickBPFStage("Triage");
             bussinessProcessFlowPage.ClickNextStageButton();
             toolbar.WaitUntilRecordSaved();
 
@@ -46,7 +47,7 @@ namespace SPACE_Framework.Pages
             subgrid.SelectAllRecords();
             subgrid.ClickEditButton();
             commonComponents.CompleteDropdownField("Status", "3");
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             quickCreatePage.ClickSaveButton();
             subgrid.RefreshGridUntilRowsUpdated("Rows: 0");
 
@@ -62,16 +63,16 @@ namespace SPACE_Framework.Pages
             toolbar.ClickSaveAndClose();
         }
 
-        public void CreteMaintenanceRecord(string name, string spacecrat, string assigne, string incidentCategory)
+        public void CreteMaintenanceRecord(string name, string spacecraft, string assigne, string incidentCategory)
         {
             FillName(maintenanceName);
             SelectSpacecraft("Demo");
             toolbar.ClickSaveButton();
 
-            bussinessProcessFlowPage.ClickBPFStage("Triage");
+            subgrid.NavigateToSubgridSection("Triage");
             commonComponents.CompleteOptionField("Assigned To", "BAP");
             commonComponents.CompleteOptionField("Incident Category", "Engine Overheating");
-            Thread.Sleep(5000);
+            bussinessProcessFlowPage.ClickBPFStage("Triage");
             bussinessProcessFlowPage.ClickNextStageButton();
             toolbar.WaitUntilRecordSaved();
 
@@ -80,7 +81,7 @@ namespace SPACE_Framework.Pages
             subgrid.SelectAllRecords();
             subgrid.ClickEditButton();
             commonComponents.CompleteDropdownField("Status", "3");
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             quickCreatePage.ClickSaveButton();
             subgrid.RefreshGridUntilRowsUpdated("Rows: 0");
 
@@ -88,6 +89,7 @@ namespace SPACE_Framework.Pages
             bussinessProcessFlowPage.EnterEstimateCompletionDate();
             bussinessProcessFlowPage.ClickNextStageButton();
 
+            toolbar.WaitUntilRecordSaved();
             bussinessProcessFlowPage.ClickBPFStage("Close");
             bussinessProcessFlowPage.EnterActualCompletionDate();
             commonComponents.CompleteDropdownField("Final Outcome", "2");

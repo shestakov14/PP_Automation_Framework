@@ -20,14 +20,11 @@ namespace SPACE_Framework.Helpers
         public void ClickBPFStage(string stageName)
         {
             var locator = By.XPath($"//div[@title='{stageName}']//div[contains(@id, 'stageIndicatorHolder')]");
-            var bpfStage = wait.Until(ExpectedConditions.ElementToBeClickable(locator));
-            bpfStage.Click();
-            Thread.Sleep(1000);
+            ClickElementByLocator(locator);
         }
 
         public void ClickNextStageButton()
         {
-            Thread.Sleep(1000);
             var locator = By.XPath($"//button[@aria-label=\"Next Stage\"]");
             ClickElementByLocator(locator);
         }
@@ -42,13 +39,15 @@ namespace SPACE_Framework.Helpers
 
         public void EnterEstimateCompletionDate() 
         {
+            Thread.Sleep(1000);
             DateTime date = DateTime.Today;
-            string formattedStartDate = date.ToString("MM-dd-yyyy");
+            string formattedStartDate = date.ToString("MM/dd/yyyy");
             CommonComps.CompleteField("Date of Estimated Completion Date", formattedStartDate);
         }
 
         public void EnterActualCompletionDate()
         {
+            Thread.Sleep(1000);
             DateTime date = DateTime.Today;
             string formattedStartDate = date.ToString("MM/dd/yyyy");
             CommonComps.CompleteField("Date of Actual Completion Date", formattedStartDate);
