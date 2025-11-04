@@ -77,5 +77,25 @@ namespace SPACE_Framework.Helpers
             return recordTitle;
         }
 
+        public string GetFieldValue(string filedLabel)
+        {
+            var locator = By.XPath($"//input[@aria-label=\"{filedLabel}\"]");
+            string value = FindElementByLocator(locator).GetAttribute("value");
+            return value;
+        }
+
+        public string GetPopUpWindowTitle()
+        {
+            var locator = By.XPath("//div//h1[@data-id=\"dialogTitleText\"]");
+            string value = FindElementByLocator(locator).GetAttribute("aria-label");
+            return value;
+        }
+
+        public string GetPopUpWindowText()
+        {
+            var locator = By.XPath("//div//span[@data-id=\"dialogMessageText\"]");
+            var element = FindElementByLocator(locator);
+            return element.Text;
+        }
     }
 }

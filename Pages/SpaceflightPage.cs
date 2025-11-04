@@ -52,12 +52,5 @@ namespace SPACE_Framework.Pages
             commonComponents.UpdateOptionFieldValue("Landing Spaceport", landingSpaceport);
             commonComponents.UpdateOptionFieldValue("Launch Spaceport", launchSpaceport);
         }
-
-        public string GetRecordName()
-        {
-            var locator = By.XPath("//input[@aria-label=\"Name\"]");
-            string value = FindElementByLocator(locator).GetAttribute("value");
-            return value;
-        }
     }
 }

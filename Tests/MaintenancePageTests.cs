@@ -3,6 +3,7 @@ using Allure.NUnit.Attributes;
 using SPACE_Framework.Helpers;
 using SPACE_Framework.Pages;
 using SPACE_Framework.QuickCreatePages;
+using SPACE_Framework.Subgrids;
 using SPACE_Framework.Views;
 using static SPACE_Framework.TestData.TestData;
 
@@ -67,6 +68,41 @@ namespace SPACE_Framework.Tests
             commonComponents.DeleteRecord();
 
             Assert.That(view.GetTabView("Maintenances"), Is.EqualTo("Active Maintenances"));
+        }
+
+        [Test]
+        public void Test_CompleteMaintenance_WithPendingTasks()
+        {
+            commonComponents = new CommonComponents(driver); 
+            maintenancePage = new MaintenancePage(driver);
+            bussinessProcessFlowPage = new BussinessProcessFlowPage(driver);
+            view = new MaintenanceView(driver);
+            subgrid = new BaseSubgrid(driver);
+            toolbar = new Toolbar(driver);
+            quickCreatePage = new BaseQuickCreatePage(driver);
+
+            commonComponents.NavigateToTab("Maintenances");
+            toolbar.ClickNewButton();
+            maintenancePage.FillName("Pending Tasks Record");
+            maintenancePage.SelectSpacecraft("Demo");
+            toolbar.ClickSaveButton();
+
+            subgrid.NavigateToSubgridSection("Triage");
+            commonComponents.CompleteOptionField("Assigned To", "BAP");
+            commonComponents.CompleteOptionField("Incident Category", "Engine Overheating");
+            bussinessProcessFlowPage.ClickBPFStage("Triage");
+            bussinessProcessFlowPage.ClickNextStageButton();
+            toolbar.WaitUntilRecordSaved();
+
+            subgrid.NavigateToSubgridSection("Maintenance Tasks");
+            subgrid.RefreshGridUntilRowsUpdated("Rows: 2");
+
+            bussinessProcessFlowPage.ClickBPFStage("Repair");
+            bussinessProcessFlowPage.EnterEstimateCompletionDate();
+            bussinessProcessFlowPage.ClickNextStageButton();
+
+            Assert.That(commonComponents.GetPopUpWindowTitle(), Is.EqualTo("Incomplete Maintenance Tasks"));
+            Assert.That(commonComponents.GetPopUpWindowText(), Is.EqualTo("There are 2 pending maintenance tasks. Cannot move to Close stage."));
         }
     }
 } 

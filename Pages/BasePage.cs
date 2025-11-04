@@ -18,14 +18,12 @@ namespace SPACE_Framework.Pages
 
         protected IWebElement FindElementByLocator(By by)
         {
-            // return wait.Until(driver => driver.FindElement(by));
             return wait.Until(ExpectedConditions.ElementIsVisible(by));
         }
 
         protected IList<IWebElement> FindElementsByLocator(By by)
         {
            return wait.Until(driver => driver.FindElements(by));
-
         }
 
         protected void  ClickElementByLocator(By by, int retries = 5)
@@ -47,18 +45,13 @@ namespace SPACE_Framework.Pages
                 }
                 catch (Exception ex)
                 {
-
                     throw new Exception("Clicking Failed", ex);
                 }
 
                 Thread.Sleep(500);
                 attempt++;
             }
-
             throw new Exception($"Failed to click element after {retries} attempts.");
-
-
-           // FindElementByLocator((By)by).Click();
         }
 
         protected void TypeOnElementByLocator(By by, string text)
@@ -100,7 +93,6 @@ namespace SPACE_Framework.Pages
             }
         }
 
-         
         protected IList<IWebElement> LookUpWait(string lookupLabel)
         {
             List<IWebElement> elements;

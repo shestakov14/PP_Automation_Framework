@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SPACE_Framework.Helpers;
 using SPACE_Framework.QuickCreatePages;
-using SPACE_Framework.Views;
+using SPACE_Framework.Subgrids;
 using static SPACE_Framework.TestData.TestData;
 
 namespace SPACE_Framework.Pages
@@ -33,7 +33,7 @@ namespace SPACE_Framework.Pages
             commonComponents.CompleteOptionField("Spacecraft", spacecraftName);
         }
 
-        public void CreteMaintenanceRecordFromToolbar()
+        public void CreteMaintenanceRecordFromToolbar(string outcomeIndex)
         {
             subgrid.NavigateToSubgridSection("Triage");
             commonComponents.CompleteOptionField("Assigned To", "BAP");
@@ -57,10 +57,11 @@ namespace SPACE_Framework.Pages
 
             bussinessProcessFlowPage.ClickBPFStage("Close");
             bussinessProcessFlowPage.EnterActualCompletionDate();
-            commonComponents.CompleteDropdownField("Final Outcome", "2");
+            commonComponents.CompleteDropdownField("Final Outcome", outcomeIndex);
             bussinessProcessFlowPage.ClickFinishButton();
             toolbar.WaitUntilRecordSaved();
-            toolbar.ClickSaveAndClose();
+            toolbar.ClickSaveButton();
+            subgrid.NavigateToSubgridSection("General");
         }
 
         public void CreteMaintenanceRecord(string name, string spacecraft, string assigne, string incidentCategory)

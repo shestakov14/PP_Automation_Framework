@@ -57,7 +57,6 @@ namespace SPACE_Framework.Pages
             CommonComponents.CompleteDropdownField("Organisation Type", index);
         }
 
-
         public void SetArmedOption(string desiredOption)
         {
             if (desiredOption == "No") 
@@ -71,21 +70,14 @@ namespace SPACE_Framework.Pages
                 ClickElementByLocator(toggle);
             }
         }
-        
-        public string GetRegistrationNumber()
-        {
-            var locator = By.XPath("//input[@aria-label=\"Registration Number\"]");
-            string value = FindElementByLocator(locator).GetAttribute("value");
-            return value;
-        }
 
-        public void CreateResearchSpacecraft(string name, string year, string country, string spaceport, string fleet, string organisationTypeIndex)
+        public void CreateResearchSpacecraft()
         {
-            FillName(name);
-            FillYear(year);
-            SelectCountry(country);
-            SelectSpaceport(spaceport);
-            SelectFleet(fleet);
+            FillName(researchSpacecraftName);
+            FillYear(yearManufacture);
+            SelectCountry(countryAU);
+            SelectSpaceport(spaceportSY);
+            SelectFleet(researchFleet);
             SelectSpacecraftModel(researchModel);
             SelectOrganisationType("2"); // Goverment
             toolbar.ClickSaveButton();
@@ -94,13 +86,13 @@ namespace SPACE_Framework.Pages
 
         }
 
-        public void CreateMilitarySpacecraft(string name, string year, string country, string spaceport, string fleet, string armedOption)
+        public void CreateMilitarySpacecraft(string armedOption)
         {
-            FillName(name);
-            FillYear(year);
-            SelectCountry(country);
-            SelectSpaceport(spaceport);
-            SelectFleet(fleet);
+            FillName(militarySpacecraftName);
+            FillYear(yearManufacture);
+            SelectCountry(countryUS);
+            SelectSpaceport(spaceportNY);
+            SelectFleet(militaryFleet);
             SelectSpacecraftModel(militaryModel);
             SetArmedOption(armedOption);
             toolbar.ClickSaveButton();
@@ -108,13 +100,13 @@ namespace SPACE_Framework.Pages
             toolbar.ClickSaveAndClose();
         }
 
-        public void CreateCommercialSpacecraft(string name, string year, string country, string spaceport, string fleet, string operatingComapany)
+        public void CreateCommercialSpacecraft(string operatingComapany)
         {
-            FillName(name);
-            FillYear(year);
-            SelectCountry(country);
-            SelectSpaceport(spaceport);
-            SelectFleet(fleet);
+            FillName(commercialSpacecraftName);
+            FillYear(yearManufacture);
+            SelectCountry(countryBG);
+            SelectSpaceport(spaceportSF);
+            SelectFleet(commercialFleet);
             SelectSpacecraftModel(commercialModel);
             SelectOperatingCompany(operatingComapany);
             toolbar.ClickSaveButton();

@@ -31,9 +31,9 @@ namespace SPACE_Framework.Tests
             spacecraftPage.FillYear(yearManufacture);
             spacecraftPage.SelectCountry(countryBG);
             spacecraftPage.SelectSpaceport(spaceportSF);
-            spacecraftPage.SelectFleet("Commercial Fleet");
-            spacecraftPage.SelectSpacecraftModel("Commercial Model");
-            spacecraftPage.SelectOperatingCompany("SPACE");
+            spacecraftPage.SelectFleet(commercialFleet);
+            spacecraftPage.SelectSpacecraftModel(commercialModel);
+            spacecraftPage.SelectOperatingCompany("SPACE Enterprice");
 
             toolbar.ClickSaveAndClose();
 
@@ -52,9 +52,9 @@ namespace SPACE_Framework.Tests
             Assert.That(recordName, Is.EqualTo(commercialSpacecraftName));
             Assert.That(recordYear, Is.EqualTo(yearManufacture));
             Assert.That(recordStatus, Is.EqualTo("Stationed"));
-            Assert.That(recordModel, Is.EqualTo("Commercial Model"));
+            Assert.That(recordModel, Is.EqualTo(commercialModel));
             Assert.That(recordSpaceport, Is.EqualTo(spaceportSF));
-            Assert.That(recordFleet, Is.EqualTo("Commercial Fleet"));
+            Assert.That(recordFleet, Is.EqualTo(commercialFleet));
             Assert.That(recordHours, Is.EqualTo(""));
             Assert.IsTrue(isMatch, regNumber);
         }
@@ -74,8 +74,8 @@ namespace SPACE_Framework.Tests
             spacecraftPage.FillYear(yearManufacture);
             spacecraftPage.SelectCountry(countryAU);
             spacecraftPage.SelectSpaceport(spaceportSY);
-            spacecraftPage.SelectFleet("Military Fleet");
-            spacecraftPage.SelectSpacecraftModel("Military model");
+            spacecraftPage.SelectFleet(militaryFleet);
+            spacecraftPage.SelectSpacecraftModel(militaryModel);
             spacecraftPage.SetArmedOption("Yes");
 
             toolbar.ClickSaveAndClose();
@@ -95,9 +95,9 @@ namespace SPACE_Framework.Tests
             Assert.That(recordName, Is.EqualTo(militarySpacecraftName));
             Assert.That(recordYear, Is.EqualTo(yearManufacture));
             Assert.That(recordStatus, Is.EqualTo("Stationed"));
-            Assert.That(recordModel, Is.EqualTo("Military Model"));
+            Assert.That(recordModel, Is.EqualTo(militaryModel));
             Assert.That(recordSpaceport, Is.EqualTo(spaceportSY));
-            Assert.That(recordFleet, Is.EqualTo("Military Fleet"));
+            Assert.That(recordFleet, Is.EqualTo(militaryFleet));
             Assert.That(recordHours, Is.EqualTo(""));
             Assert.IsTrue(isMatch, regNumber);
         }
@@ -116,8 +116,8 @@ namespace SPACE_Framework.Tests
             spacecraftPage.FillYear(yearManufacture);
             spacecraftPage.SelectCountry(countryUS);
             spacecraftPage.SelectSpaceport(spaceportNY);
-            spacecraftPage.SelectFleet("Research Fleet");
-            spacecraftPage.SelectSpacecraftModel("Research model");
+            spacecraftPage.SelectFleet(researchFleet);
+            spacecraftPage.SelectSpacecraftModel(researchModel);
             spacecraftPage.SelectOrganisationType("2");
 
             toolbar.ClickSaveAndClose();
@@ -137,9 +137,9 @@ namespace SPACE_Framework.Tests
             Assert.That(recordName, Is.EqualTo(researchSpacecraftName));
             Assert.That(recordYear, Is.EqualTo(yearManufacture));
             Assert.That(recordStatus, Is.EqualTo("Stationed"));
-            Assert.That(recordModel, Is.EqualTo("Research Model"));
+            Assert.That(recordModel, Is.EqualTo(researchModel));
             Assert.That(recordSpaceport, Is.EqualTo(spaceportNY));
-            Assert.That(recordFleet, Is.EqualTo("Research Fleet"));
+            Assert.That(recordFleet, Is.EqualTo(researchFleet));
             Assert.That(recordHours, Is.EqualTo(""));
             Assert.IsTrue(isMatch, regNumber);
         }
@@ -161,7 +161,7 @@ namespace SPACE_Framework.Tests
             commonComponents.UpdateOptionFieldValue("Spaceport", spaceportSF);
             toolbar.ClickSaveButton();
 
-            string regNumber = spacecraftPage.GetRegistrationNumber();
+            string regNumber = commonComponents.GetFieldValue("Registration Number");
             string pattern = @"^BG-[A-Z0-9]{3,4}$";
             bool isMatch = Regex.IsMatch(regNumber, pattern);
             Assert.IsTrue(isMatch);
@@ -179,6 +179,18 @@ namespace SPACE_Framework.Tests
 
             var viewTitle = view.GetTabView("Active Spacecrafts");
             Assert.That(viewTitle, Is.EqualTo("Active Spacecrafts"));
+        }
+
+        [Test]
+        public void Test_AddMoreEngines_ThanEngineCount()
+        {
+            commonComponents = new CommonComponents(driver);
+            spacecraftPage = new SpacecraftPage(driver);
+            view = new SpacecraftView(driver);
+            toolbar = new Toolbar(driver);
+
+            toolbar.ClickNewButton();
+            spacecraftPage.CreateCommercialSpacecraft("SPACE Enterprice");
         }
     }
 }

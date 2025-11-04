@@ -3,6 +3,7 @@ using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using SPACE_Framework.Helpers;
 using SPACE_Framework.Pages;
+using SPACE_Framework.Subgrids;
 using SPACE_Framework.Views;
 using System.Xml.Linq;
 using static SPACE_Framework.TestData.TestData;
@@ -91,7 +92,7 @@ namespace SPACE_Framework.Tests
 
             commonComponents.NavigateToTab("Spaceflights");
             view.OpenActiveRecordByIndex("1");
-            var spaceflightName = spaceflightPage.GetRecordName();
+            var spaceflightName = commonComponents.GetFieldValue("Name");
 
             commonComponents.DeleteRecord();
 
