@@ -2,6 +2,8 @@
 using Allure.NUnit.Attributes;
 using SPACE_Framework.Helpers;
 using SPACE_Framework.Pages;
+using SPACE_Framework.QuickCreatePages;
+using SPACE_Framework.Subgrids;
 using SPACE_Framework.Views;
 using System.Text.RegularExpressions;
 using static SPACE_Framework.TestData.TestData;
@@ -16,6 +18,9 @@ namespace SPACE_Framework.Tests
         SpacecraftPage? spacecraftPage;
         SpacecraftView? view;
         Toolbar? toolbar;
+        EnginePage? enginePage;
+        BaseSubgrid? subgrid;
+        EngineQuickCreatePage? engineQuickCreatePage;
 
         [Test]
         public void Test_Create_CommercialModelSpacecraft()
@@ -188,9 +193,21 @@ namespace SPACE_Framework.Tests
             spacecraftPage = new SpacecraftPage(driver);
             view = new SpacecraftView(driver);
             toolbar = new Toolbar(driver);
+            enginePage = new EnginePage(driver);
+            subgrid = new BaseSubgrid(driver);
+            engineQuickCreatePage = new EngineQuickCreatePage(driver);
 
             toolbar.ClickNewButton();
             spacecraftPage.CreateCommercialSpacecraft("SPACE Enterprice");
+            enginePage.FillName(engineName);
+            enginePage.SelectEngineModel("Hyperion 7");
+            toolbar.ClickSaveAndClose();
+            subgrid.NavigateToSubgridSection("Engine");
+            subgrid.ClickNewButton("Engine");
+            engineQuickCreatePage.CreateEngineRecord(engineName,commercialModel);
+
+
+
         }
     }
 }

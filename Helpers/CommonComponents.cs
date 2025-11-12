@@ -97,5 +97,11 @@ namespace SPACE_Framework.Helpers
             var element = FindElementByLocator(locator);
             return element.Text;
         }
+
+        public void DismissNotification()
+        {
+            var locator = By.XPath("//img[@aria-label='Dismiss notification']");
+            ClickElementByLocator(locator);
+        }
     }
 }

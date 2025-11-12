@@ -11,6 +11,7 @@ namespace SPACE_Framework.Views
     {
         public SpaceflightView(IWebDriver driver) : base(driver)
         {
+
         }
 
         public string GetRecordLaunchingSpaceport(string index)

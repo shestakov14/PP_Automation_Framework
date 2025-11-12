@@ -55,7 +55,7 @@ namespace SPACE_Framework.Pages
             bussinessProcessFlowPage.EnterEstimateCompletionDate();
             bussinessProcessFlowPage.ClickNextStageButton();
 
-            bussinessProcessFlowPage.ClickBPFStage("Close");
+            //bussinessProcessFlowPage.ClickBPFStage("Close");
             bussinessProcessFlowPage.EnterActualCompletionDate();
             commonComponents.CompleteDropdownField("Final Outcome", outcomeIndex);
             bussinessProcessFlowPage.ClickFinishButton();
